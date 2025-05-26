@@ -10,7 +10,7 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $menus = Menu::all(); 
+        $menus = Menu::all();
         return view('menu.index', compact('menus'));
     }
 
@@ -32,12 +32,13 @@ class MenuController extends Controller
             'description' => 'required|min:10',
             'price'       => 'required|numeric',
             'stock'       => 'required|integer',
+            'category'    => 'required|string|max:100',
             'image'       => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->storeAs(
-                'public/menus',
+                'public/public/menus',
                 'menu_' . time() . '.' . $request->file('image')->extension()
             );
             $validated['image'] = basename($path);
@@ -50,7 +51,6 @@ class MenuController extends Controller
             'alert-type' => 'success'
         ];
 
-        // Sesuai route kamu, index route name-nya 'menu'
         if ($request->save ?? false) {
             return redirect()->route('menu')->with($notification);
         } else {
@@ -67,15 +67,16 @@ class MenuController extends Controller
             'description' => 'required|min:10',
             'price'       => 'required|numeric',
             'stock'       => 'required|integer',
+            'category'    => 'required|string|max:100',
             'image'       => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
             if ($menu->image) {
-                Storage::delete('public/menus/' . $menu->image);
+                Storage::delete('public/public/menus/' . $menu->image);
             }
             $path = $request->file('image')->storeAs(
-                'public/menus',
+                'public/public/menus',
                 'menu_' . time() . '.' . $request->file('image')->extension()
             );
             $validated['image'] = basename($path);
@@ -96,7 +97,7 @@ class MenuController extends Controller
         $menu = Menu::findOrFail($id);
 
         if ($menu->image) {
-            Storage::delete('public/menus/' . $menu->image);
+            Storage::delete('public/public/menus/' . $menu->image);
         }
 
         $menu->delete();

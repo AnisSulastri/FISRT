@@ -15,6 +15,7 @@ class MenuSeeder extends Seeder
             'description' => 'Nasi goreng dengan topping ayam, telur, dan kerupuk.',
             'price' => 25000,
             'stock' => 20,
+            'category' => 'Makanan',
         ]);
 
         // Tambahkan data lain kalau perlu

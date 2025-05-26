@@ -19,10 +19,11 @@
                     <table class="min-w-full border-collapse border border-gray-300">
                         <thead>
                             <tr>
-                                <th class="border border-gray-300 px-4 py-2">#</th>
+                                <th class="border border-gray-300 px-4 py-2">No</th>
                                 <th class="border border-gray-300 px-4 py-2">Gambar</th>
                                 <th class="border border-gray-300 px-4 py-2">Nama</th>
                                 <th class="border border-gray-300 px-4 py-2">Harga</th>
+                                <th class="border border-gray-300 px-4 py-2">Kategori</th>
                                 <th class="border border-gray-300 px-4 py-2">Stok</th>
                                 <th class="border border-gray-300 px-4 py-2">Aksi</th>
                             </tr>
@@ -32,21 +33,18 @@
                                 <tr>
                                     <td class="border border-gray-300 px-4 py-2 text-center">{{ $loop->iteration }}</td>
                                     <td class="border border-gray-300 px-4 py-2 text-center">
-                                        <img src="{{ asset('storage/menu/' . $menu->image) }}" alt="{{ $menu->title }}"
+                                        <img src="{{ asset('storage/public/public/menus/' . $menu->image) }}" alt=""
                                              class="w-24 mx-auto rounded">
                                     </td>
                                     <td class="border border-gray-300 px-4 py-2">{{ $menu->title }}</td>
                                     <td class="border border-gray-300 px-4 py-2">Rp {{ number_format($menu->price, 2, ',', '.') }}</td>
+                                    <td class="border border-gray-300 px-4 py-2">{{ $menu->category }}</td>
                                     <td class="border border-gray-300 px-4 py-2 text-center">{{ $menu->stock }}</td>
                                     <td class="border border-gray-300 px-4 py-2 text-center space-x-2">
-
-                                        <!-- Tombol Edit -->
                                         <a href="{{ route('menu.edit', $menu->id) }}"
                                            class="inline-block px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition">
                                             Edit
                                         </a>
-
-                                        <!-- Tombol Delete -->
                                        <x-danger-button 
                                         x-data=""
                                         x-on:click.prevent="$dispatch('open-modal', 'confirm-menu-deletion')"

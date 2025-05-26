@@ -19,7 +19,7 @@
                         </div>
 
                         <div class="max-w-xl">
-                            <x-input-label for="title" value="Judul Menu" />
+                            <x-input-label for="title" value="Nama Menu" />
                             <x-text-input id="title" type="text" name="title" class="mt-1 block w-full"
                                 value="{{ old('title') }}" required />
                             <x-input-error class="mt-2" :messages="$errors->get('title')" />
@@ -29,8 +29,15 @@
                             <x-input-label for="description" value="Deskripsi Menu" />
                             <textarea id="description" name="description"
                                 class="mt-1 block w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
-                                rows="5">{{ old('description') }}</textarea>
+                                rows="5" required>{{ old('description') }}</textarea>
                             <x-input-error class="mt-2" :messages="$errors->get('description')" />
+                        </div>
+
+                        <div class="max-w-xl">
+                            <x-input-label for="category" value="Kategori" />
+                            <x-text-input id="category" type="text" name="category" class="mt-1 block w-full"
+                                value="{{ old('category') }}" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('category')" />
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl">
@@ -50,7 +57,7 @@
                         </div>
 
                         <div class="flex space-x-4 mt-6">
-                           <x-secondary-button tag="a" href="{{ route('menu') }}">Batal</x-secondary-button>
+                            <x-secondary-button tag="a" href="{{ route('menu') }}">Batal</x-secondary-button>
                             <x-primary-button type="submit">Simpan</x-primary-button>
                         </div>
                     </form>
